@@ -36,10 +36,11 @@ class TimeManage {
   callSetEvents() {
     for (let e = this.events.length - 1; e >= 0; e -= 1) {
       if (this.date > this.events[e].date.getTime()) {
-        this.events[e].callback();
+        this.events[e].callback(this.time);
         this.events.splice(e, 1);
       }
     }
+    if (this.debug) console.log(this.events);
   }
 
   update() {

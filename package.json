@@ -1,7 +1,7 @@
 {
-  "name": "time-manager",
-  "version": "0.1.1",
-  "description": "time-manager",
+  "name": "time-manage",
+  "version": "0.1.14",
+  "description": "time-manage",
   "main": "index.js",
   "scripts": {
     "test": "node test/test.js"
