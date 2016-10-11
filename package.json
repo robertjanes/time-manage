@@ -1,6 +1,6 @@
 {
   "name": "time-manage",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "time-manage",
   "main": "index.js",
   "scripts": {
