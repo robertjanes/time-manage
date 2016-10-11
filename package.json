@@ -1,0 +1,11 @@
+{
+  "name": "time-manager",
+  "version": "0.1.1",
+  "description": "time-manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "Robert Janes",
+  "license": "ISC"
+}
