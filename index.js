@@ -1,9 +1,8 @@
 'use strict';
 
 class TimeManage {
-  constructor(int, debug) {
+  constructor(debug) {
     this.date;
-    this.interval = int;
     this.intervals = [];
     this.events = [];
     this.debug = debug;
@@ -28,7 +27,7 @@ class TimeManage {
   setEvent(date, callback) {
     let newEvent = {id: this.getEventId(date), date, callback};
     this.events.push(newEvent);
-    if (this.debug) console.log('Event with id ' + newEvent.id + ' set for ' + newEvent.date);
+    if (this.debug) this.log('Event [' + newEvent.id + '] set for ' + newEvent.date);
     return newEvent.id;
   }
 
@@ -36,7 +35,7 @@ class TimeManage {
     for (let e = 0; e < this.events.length; e += 1) {
       if (id === this.events[e].id) {
         this.events.splice(e, 1);
-        if (this.debug) console.log('Event with id ' + id + ' deleted');
+        if (this.debug) this.log('Event [' + id + '] deleted');
       }
     }
   }
@@ -49,23 +48,23 @@ class TimeManage {
         this.events.splice(e, 1);
       }
     }
-    if (this.debug) console.log(this.events);
   }
 
   update() {
     this.date = Date.now();
     this.callIntervals(this.date);
     this.callSetEvents();
-    let nextInterval = this.calcDrift() * 1000;
-    if (this.debug) console.log('Next interval: ' + (nextInterval / 1000) + 's');
+    let nextInterval = this.calcDrift();
+    if (this.debug) this.log('Next interval: ' + (nextInterval / 1000) + 's');
 
     setTimeout(this.update.bind(this), nextInterval);
   }
 
   calcDrift() {
     let driftDate = new Date();
-    let drift = 60 - driftDate.getSeconds() + 30;
-    if (this.debug) console.log(driftDate + "\nTimeout drifted by " + (driftDate.getSeconds() - 30) + 's');
+    let drift = 90000 - driftDate.getSeconds() * 1000 + driftDate.getMilliseconds();
+    if (this.debug) this.log('INTERVAL at ' + driftDate + "\n\x20\x20\x20\x20" + 'Timeout drifted by ' +
+      (60000 - drift) + 'ms');
     return drift;
   }
 
@@ -76,7 +75,7 @@ class TimeManage {
   setInterval(callback) {
     let intervalEvent = {id: this.getIntervalId(), callback}
     this.intervals.push(intervalEvent);
-    if (this.debug) console.log('Attach Event with id ' + intervalEvent.id + ' created');
+    if (this.debug) this.log('Interval event [' + intervalEvent.id + '] created');
     return intervalEvent.id;
   }
 
@@ -84,7 +83,7 @@ class TimeManage {
     for (let c = 0; c < this.intervals.length; c += 1) {
       if (id === this.intervals[c].id) {
         this.intervals.splice(c, 1);
-        if (this.debug) console.log('Attach Event with id ' + id + ' deleted');
+        if (this.debug) this.log('Interval event [' + id + '] deleted');
       }
     }
   }
@@ -92,8 +91,12 @@ class TimeManage {
   callIntervals(time) {
     for (let c = 0; c < this.intervals.length; c += 1) {
       this.intervals[c].callback(time);
-      if (this.debug) console.log('Callback for attach Event with id ' + this.intervals[c].id + ' called');
+      if (this.debug) this.log('Callback for Interval event [' + this.intervals[c].id + '] called');
     }
+  }
+
+  log(message) {
+    console.log("TM: " + message);
   }
 
   init() {
