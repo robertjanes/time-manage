@@ -1,6 +1,6 @@
 # TimeManage
 
-Manage time dependant processes over long durations. 
+Manage time dependant processes over long periods.
 
 The timer updates on a minute-by-minute basis and accounts for inaccuracies in the vanilla Javascript `SetTimeout` function.
 
