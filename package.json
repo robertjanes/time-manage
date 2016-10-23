@@ -1,11 +1,16 @@
 {
   "name": "time-manage",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "time-manage",
   "main": "index.js",
   "scripts": {
     "test": "node test/test.js"
   },
+  "keywords": [
+    "time",
+    "manage"
+  ],
+  "repository": "git@github.com:robertjanes/time-manage.git",
   "author": "Robert Janes",
   "license": "ISC"
 }

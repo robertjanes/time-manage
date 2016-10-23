@@ -1,4 +1,4 @@
-# TimeManage
+# Time Manage
 
 Manage time dependant processes over long periods.
 
@@ -6,7 +6,7 @@ The timer updates on a minute-by-minute basis and accounts for inaccuracies in t
 
 ## Install
 
-```shell
+```
 npm install time-manage --save
 ```
 
