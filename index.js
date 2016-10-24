@@ -2,7 +2,7 @@
 
 class TimeManage {
   constructor(debug) {
-    this.date;
+    this.date = Date.now();
     this.intervals = [];
     this.events = [];
     this.debug = debug;
