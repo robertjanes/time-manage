@@ -5,8 +5,8 @@ class TimeManage {
     this.date = Date.now();
     this.intervals = [];
     this.events = [];
-    this.debug = debug;
     this.pastEvents = [];
+    this.debug = debug;
   }
 
   getEventId(date) {
@@ -56,15 +56,13 @@ class TimeManage {
     this.callSetEvents();
     let nextInterval = this.calcDrift();
     if (this.debug) this.log('Next interval: ' + (nextInterval / 1000) + 's');
-
     setTimeout(this.update.bind(this), nextInterval);
   }
 
   calcDrift() {
     let driftDate = new Date();
     let drift = 90000 - driftDate.getSeconds() * 1000 + driftDate.getMilliseconds();
-    if (this.debug) this.log('INTERVAL at ' + driftDate + "\n\x20\x20\x20\x20" + 'Timeout drifted by ' +
-      (60000 - drift) + 'ms');
+    if (this.debug) this.log('INTERVAL at ' + driftDate + "\n\x20\x20\x20\x20" + 'Timeout drifted by ' + (60000 - drift) + 'ms');
     return drift;
   }
 
@@ -96,7 +94,7 @@ class TimeManage {
   }
 
   log(message) {
-    console.log("TM: " + message);
+    console.log('TM: ' + message);
   }
 
   init() {
