@@ -1,6 +1,6 @@
 'use strict';
 
-class TimeManage {
+class TM {
   constructor(debug) {
     this.date = Date.now();
     this.intervals = [];
@@ -19,7 +19,7 @@ class TimeManage {
 
   isEventPast(id) {
     for (let e = 0; e < this.pastEvents.length; e += 1) {
-      if (this.pastEvents[e].id == id) return true;
+      if (this.pastEvents[e].id === id) return true;
     }
     return false;
   }
@@ -71,7 +71,7 @@ class TimeManage {
   }
 
   setInterval(callback) {
-    let intervalEvent = {id: this.getIntervalId(), callback}
+    let intervalEvent = { id: this.getIntervalId(), callback };
     this.intervals.push(intervalEvent);
     if (this.debug) this.log('Interval event [' + intervalEvent.id + '] created');
     return intervalEvent.id;
@@ -102,4 +102,4 @@ class TimeManage {
   }
 }
 
-module.exports = TimeManage;
+module.exports = TM;
